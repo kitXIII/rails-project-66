@@ -1,0 +1,10 @@
+ru:
+  layouts:
+    web:
+      application:
+        title: Github quality
+      shared:
+        nav:
+          home: Главная
+          logout: Выйти
+          sign_in: Войти
