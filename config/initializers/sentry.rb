@@ -7,7 +7,7 @@ Sentry.init do |config|
   config.excluded_exceptions += [
     'ActionController::RoutingError',
     'ActionController::UnknownFormat',
-    'ActiveRecord::RecordNotFound',
+    'ActiveRecord::RecordNotFound'
   ]
 
   config.traces_sample_rate = 1.0
