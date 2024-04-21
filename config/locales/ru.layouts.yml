@@ -7,4 +7,4 @@ ru:
         nav:
           home: Главная
           logout: Выйти
-          sign_in: Войти
+          sign_in: Войти с помощью Github
