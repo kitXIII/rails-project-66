@@ -7,6 +7,8 @@ Github repository quality analyzer project built with Ruby on Rails.
 The analyzer helps to automatically monitor the quality of repositories on Github.
 It tracks code changes and runs built-in analyzers. Then it generates reports and sends them to the user.
 
+The [demo](https://kitxiii-github-quality.onrender.com/) is published on [render](https://render.com/) service
+
 ### Development
 
 
