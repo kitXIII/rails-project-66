@@ -2,3 +2,5 @@
   .container-fluid.py-3.py-md-5
     h1.display-5.fw-bold = t('.heading')
     p.col-md-8.fs-4 = t('.description')
+    - if signed_in?
+      = link_to t('.my_repositories'), repositories_path, class: 'btn btn-primary btn-lg'

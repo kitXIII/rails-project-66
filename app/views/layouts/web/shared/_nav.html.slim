@@ -11,6 +11,8 @@
       - if signed_in?
         li.nav-item = link_to t('.home'), root_path,
           class: "nav-link #{'active' if current_page?(root_path)}"
+        li.nav-item = link_to t('.repositories'), repositories_path,
+          class: "nav-link #{'active' if current_page?(repositories_path)}"
 
       hr.text-white-50.my-1.d-md-none
 

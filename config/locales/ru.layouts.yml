@@ -6,5 +6,6 @@ ru:
       shared:
         nav:
           home: Главная
+          repositories: Репозитории
           logout: Выйти
           sign_in: Войти с помощью Github
