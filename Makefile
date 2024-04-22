@@ -21,7 +21,7 @@ lint:
 	bundle exec slim-lint app/views/
 
 lint-fix:
-	bundle exec rubocop app -A
+	bundle exec rubocop app test -A
 
 test:
 	yarn run build

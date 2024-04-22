@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     end
 
     root 'home#index'
+
+    resources :repositories, only: %i[index new]
   end
 end
