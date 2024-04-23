@@ -1,2 +1,14 @@
-h1 Web::Repositories#index
-p Find me in app/views/web/repositories/index.html.slim
+= link_to t('.new'), new_repository_path, class: 'btn btn-primary'
+
+.overflow-x-scroll.pt-2
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th{ scope = 'col' } = Repository.human_attribute_name(:name)
+        th{ scope = 'col' } = Repository.human_attribute_name(:language)
+
+    tbody
+      - @repositories.each do |repository|
+        tr
+          td = repository.name
+          td = repository.language

@@ -1,0 +1,7 @@
+ru:
+  activerecord:
+    attributes:
+      repository:
+        name: Наименование
+        language: Язык
+        github_id: Ваш репозиторий на github

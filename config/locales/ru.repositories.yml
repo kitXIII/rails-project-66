@@ -1,0 +1,7 @@
+ru:
+  web:
+    repositories:
+      index:
+        new: Добавить репозиторий
+      new:
+        title: Добавление репозитория
