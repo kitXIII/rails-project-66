@@ -6,6 +6,7 @@ class GithubHelper
       client = Octokit::Client.new access_token: user.token, auto_paginate: true
 
       client.repos
+            .select { |r| Repository.language.values.include? r.language.downcase }
     end
   end
 end
