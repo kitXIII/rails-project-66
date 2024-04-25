@@ -3,6 +3,7 @@
 module AuthConcern
   def sign_in(user)
     session[:user_id] = user.id
+    session[:login_ts] = DateTime.now.to_i
   end
 
   def sign_out

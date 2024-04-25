@@ -9,7 +9,10 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def new
     @repository = Repository.new
-    @github_repos = GithubHelper.fetch_user_repos(current_user)
+
+    @github_repos = Rails.cache.fetch([current_user.id, session[:login_ts], :repos], expires_in: 10.minutes) do
+      GithubHelper.fetch_user_repos(current_user)
+    end
   end
 
   def create
