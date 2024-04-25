@@ -110,6 +110,8 @@ GEM
       dotenv (= 3.1.0)
       railties (>= 6.1)
     drb (2.2.1)
+    dry-container (0.11.0)
+      concurrent-ruby (~> 1.0)
     enumerize (2.8.1)
       activesupport (>= 3.2)
     erubi (1.12.0)
@@ -383,6 +385,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
+  dry-container
   enumerize
   faker
   i18n-debug

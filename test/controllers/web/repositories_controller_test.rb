@@ -27,17 +27,8 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get new when user is logged in' do
-    repositories_response = load_fixture('files/repositories.json')
-
-    stub_request(:get, 'https://api.github.com/user/repos?per_page=100')
-      .to_return(
-        status: 200,
-        body: repositories_response,
-        headers: { 'Content-Type' => 'application/json' }
-      )
-
     sign_in(@user)
-    get repositories_url
+    get new_repository_url
 
     assert_response :success
   end
