@@ -11,8 +11,8 @@ module GithubHelper
                   .select { |r| Repository.language.values.include? r.language.downcase }
     end
 
-    def fetch_user_repo(user, github_id)
-      client(user).repo(github_id)
+    def fetch_repo_data(repository)
+      client(repository.user).repo(repository.github_id)
     end
   end
 end

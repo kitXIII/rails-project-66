@@ -15,6 +15,15 @@ class Web::RepositoriesController < Web::ApplicationController
   def create
     @repository = current_user.repositories.build(repository_params)
 
+    if @repository.save
+      RepositoryLoaderJob.perform_later(@repository.id)
+
+      redirect_to repository_path(@repository), notice: t('.success')
+    else
+      flash[:alert] = t('.failure')
+      render :new, status: :unprocessable_entity
+    end
+
     redirect_to repositories_path
   end
 
