@@ -8,6 +8,7 @@ one:
   clone_url: MyString
   ssh_url: MyString
   user: one
+  fetching_state: 'init'
 
 two:
   name: MyString
@@ -17,3 +18,4 @@ two:
   clone_url: MyString
   ssh_url: MyString
   user: two
+  fetching_state: 'init'
