@@ -10,15 +10,19 @@ class RepositoryLoaderJob < ApplicationJob
 
     github_data = GithubHelper.fetch_repo_data(repository)
 
-    repository.update!(
+    params = {
       name: github_data[:name],
       full_name: github_data[:full_name],
-      language: github_data[:language],
+      language: github_data[:language].downcase,
       clone_url: github_data[:clone_url],
       ssh_url: github_data[:ssh_url]
-    )
+    }
 
-    repository.mark_as_fetched!
+    if repository.update(params)
+      repository.mark_as_fetched!
+    else
+      repository.reload.mark_as_failed!
+    end
   rescue StandardError
     repository&.mark_as_failed!
   end

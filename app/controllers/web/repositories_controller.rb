@@ -18,13 +18,11 @@ class Web::RepositoriesController < Web::ApplicationController
     if @repository.save
       RepositoryLoaderJob.perform_later(@repository.id)
 
-      redirect_to repository_path(@repository), notice: t('.success')
+      redirect_to repositories_path, notice: t('.success')
     else
       flash[:alert] = t('.failure')
       render :new, status: :unprocessable_entity
     end
-
-    redirect_to repositories_path
   end
 
   private

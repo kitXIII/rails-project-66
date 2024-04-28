@@ -6,9 +6,10 @@
       tr
         th{ scope = 'col' } = Repository.human_attribute_name(:name)
         th{ scope = 'col' } = Repository.human_attribute_name(:language)
-
+        th{ scope = 'col' } = t('.last_check_state')
     tbody
       - @repositories.each do |repository|
         tr
-          td = repository.name
+          td = repository.fetched? ? repository.name : repository.aasm.human_state
           td = repository.language
+          td = '-'

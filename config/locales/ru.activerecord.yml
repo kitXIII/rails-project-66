@@ -5,3 +5,7 @@ ru:
         name: Наименование
         language: Язык
         github_id: Ваш репозиторий на github
+        fetching_state/init: Репозиторий проинициализирован
+        fetching_state/fetching: Загружается информация о репозитории
+        fetching_state/fetched: Информация о репозитории получена
+        fetching_state/failed: Ошибка подключения

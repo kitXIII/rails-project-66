@@ -3,6 +3,7 @@ ru:
     repositories:
       index:
         new: Добавить репозиторий
+        last_check_state: Статус последней проверки
       new:
         title: Добавление репозитория
       create:
