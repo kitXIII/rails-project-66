@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Repository < ApplicationRecord
-  include AASM
   extend Enumerize
 
   has_many :checks, dependent: :destroy

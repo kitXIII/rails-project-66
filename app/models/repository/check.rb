@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Repository::Check < ApplicationRecord
+  include AASM
+
   belongs_to :repository
 
   aasm column: :state do
