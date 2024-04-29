@@ -10,6 +10,6 @@
     tbody
       - @repositories.each do |repository|
         tr
-          td = repository.fetched? ? repository.name : repository.aasm.human_state
-          td = repository.language
+          td = repository.name || '-'
+          td = repository.language || '-'
           td = '-'

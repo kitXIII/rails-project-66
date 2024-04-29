@@ -6,7 +6,7 @@ class RepositoryLoaderJob < ApplicationJob
   def perform(repository_id)
     repository = Repository.find repository_id
 
-    repository.fetch!
+    return unless repository
 
     github_data = GithubHelper.fetch_repo_data(repository)
 
@@ -18,12 +18,6 @@ class RepositoryLoaderJob < ApplicationJob
       ssh_url: github_data[:ssh_url]
     }
 
-    if repository.update(params)
-      repository.mark_as_fetched!
-    else
-      repository.reload.mark_as_failed!
-    end
-  rescue StandardError
-    repository&.mark_as_failed!
+    repository.update!(params)
   end
 end

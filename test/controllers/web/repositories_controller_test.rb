@@ -53,7 +53,7 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
     repository = Repository.find_by @attrs
 
-    assert { repository.fetched? }
+    assert { repository.clone_url }
     assert { repository.user == @user }
 
     assert_redirected_to repositories_url

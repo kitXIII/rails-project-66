@@ -10,21 +10,4 @@ class Repository < ApplicationRecord
   validates :github_id, presence: true, uniqueness: true
 
   enumerize :language, in: %i[ruby]
-
-  aasm column: :fetching_state do
-    state :init, initial: true
-    state :fetching, :fetched, :failed
-
-    event :fetch do
-      transitions from: %i[init fetched failed], to: :fetching
-    end
-
-    event :mark_as_fetched do
-      transitions from: :fetching, to: :fetched
-    end
-
-    event :mark_as_failed do
-      transitions to: :failed
-    end
-  end
 end

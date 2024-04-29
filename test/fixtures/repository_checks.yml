@@ -3,11 +3,11 @@
 one:
   commit_id: MyString
   repository: one
-  state: MyString
+  state: :init
   result: false
 
 two:
   commit_id: MyString
   repository: two
-  state: MyString
+  state: :init
   result: false

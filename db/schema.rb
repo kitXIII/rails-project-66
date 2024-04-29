@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_151241) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "fetching_state", null: false
     t.index ["github_id"], name: "index_repositories_on_github_id", unique: true
     t.index ["user_id"], name: "index_repositories_on_user_id"
   end
