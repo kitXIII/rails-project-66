@@ -9,6 +9,9 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     @attrs = {
       github_id: 123_456_789
     }
+
+    @repository_exists = repositories(:one)
+    @repository_belongs_to_another_user = repositories(:two)
   end
 
   test 'should not get index when user is not logged in' do
@@ -55,6 +58,28 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
     assert { repository.clone_url }
     assert { repository.user == @user }
+
+    assert_redirected_to repositories_url
+  end
+
+  test 'should create and refresh data when repository exists' do
+    sign_in(@user)
+    post repositories_url, params: { repository: @repository_exists.slice(:github_id) }
+
+    repository = Repository.find_by @repository_exists.slice(:github_id)
+
+    assert { repository.clone_url != @repository_exists.clone_url }
+
+    assert_redirected_to repositories_url
+  end
+
+  test 'should not create and refresh data when repository belongs to another user' do
+    sign_in(@user)
+    post repositories_url, params: { repository: @repository_belongs_to_another_user.slice(:github_id) }
+
+    repository = Repository.find_by @repository_belongs_to_another_user.slice(:github_id)
+
+    assert { repository.clone_url == @repository_belongs_to_another_user.clone_url }
 
     assert_redirected_to repositories_url
   end
