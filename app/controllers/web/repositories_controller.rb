@@ -8,6 +8,10 @@ class Web::RepositoriesController < Web::ApplicationController
     @repositories = current_user.repositories.order(updated_at: :desc)
   end
 
+  def show
+    @repository = Repository.find params[:id]
+  end
+
   def new
     @repository = Repository.new
   end

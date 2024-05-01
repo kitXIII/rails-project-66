@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
     root 'home#index'
 
-    resources :repositories, only: %i[index new create]
+    resources :repositories, only: %i[index show new create]
   end
 end

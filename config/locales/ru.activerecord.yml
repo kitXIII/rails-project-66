@@ -2,6 +2,9 @@ ru:
   activerecord:
     attributes:
       repository:
-        name: Наименование
-        language: Язык
+        created_at: Дата создания
+        updated_at: Дата обновления
+        full_name: Наименование
         github_id: Ваш репозиторий на github
+        language: Язык
+        name: Наименование

@@ -14,5 +14,6 @@ module GithubHelper
     def fetch_repo_data(repository)
       client(repository.user).repo(repository.github_id)
     end
+    # client.branch(r, r.default_branch)
   end
 end
