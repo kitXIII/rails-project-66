@@ -8,3 +8,10 @@ ru:
         github_id: Ваш репозиторий на github
         language: Язык
         name: Наименование
+      repository/check:
+        commit_id: ID коммита
+        created_at: Дата создания
+        result: Пройдена
+        state: Статус
+        state/init: Начата
+

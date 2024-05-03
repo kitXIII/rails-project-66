@@ -15,3 +15,23 @@ p
 p
   strong.me-2 = Repository.human_attribute_name(:updated_at)
   = l(@repository.updated_at, format: :long)
+
+hr
+
+.overflow-x-scroll
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th{ scope = 'col' }
+        th{ scope = 'col' } = Repository::Check.human_attribute_name(:state)
+        th{ scope = 'col' } = Repository::Check.human_attribute_name(:commit_id)
+        th{ scope = 'col' } = Repository::Check.human_attribute_name(:result)
+        th{ scope = 'col' } = Repository::Check.human_attribute_name(:created_at)
+    tbody
+      - @repository.checks.each do |check|
+        tr
+          td = link_to check.id, repository_check_path(@repository, check)
+          td = check.aasm.human_state
+          td = check.commit_id || '-'
+          td = check.result
+          td = l(check.created_at, format: :long)

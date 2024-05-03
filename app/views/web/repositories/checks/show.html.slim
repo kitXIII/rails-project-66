@@ -1,2 +1,19 @@
-h1
-  | Checks
+.mb-4.d-flex.flex-column.flex-md-row.align-items-start.justify-content-md-between
+  h1 = t('.title', id: @check.id)
+  = link_to t('.to_repository'), repository_path(@check.repository), class: 'btn btn-primary'
+
+p
+  strong.me-2 = Repository::Check.human_attribute_name(:created_at)
+  = l(@check.created_at, format: :long)
+
+p
+  strong.me-2 = Repository::Check.human_attribute_name(:state)
+  = @check.aasm.human_state
+
+p
+  strong.me-2 = Repository::Check.human_attribute_name(:result)
+  = @check.result
+
+p
+  strong.me-2 = Repository::Check.human_attribute_name(:commit_id)
+  = @check.commit_id || '-'
