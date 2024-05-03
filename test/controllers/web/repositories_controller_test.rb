@@ -81,6 +81,6 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
 
     assert { repository.clone_url == @repository_belongs_to_another_user.clone_url }
 
-    assert_redirected_to repositories_url
+    assert_redirected_to root_url
   end
 end

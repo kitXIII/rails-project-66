@@ -18,10 +18,9 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def create
     @repository = Repository.find_or_initialize_by(repository_params)
-
     @repository.user = current_user unless @repository.persisted?
 
-    return redirect_to repositories_path, alert: t('not_permitted') unless @repository.user == current_user
+    authorize @repository
 
     if @repository.save
       RepositoryLoaderJob.perform_later(@repository.id)

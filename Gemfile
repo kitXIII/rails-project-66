@@ -14,6 +14,7 @@ gem 'faker'
 gem 'octokit'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
+gem 'pundit'
 gem 'rails-i18n'
 gem 'rubocop', require: false
 gem 'rubocop-minitest'

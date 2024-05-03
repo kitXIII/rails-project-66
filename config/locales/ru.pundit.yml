@@ -1,0 +1,7 @@
+ru:
+  pundit:
+    default: У вас недостаточно прав!
+    repository_policy:
+      create?: Недостаточно прав. Вы не можете добавить этот репозиторий!
+    repository/check_policy:
+      create?: Недостаточно прав. Вы не можете создать проверку!
