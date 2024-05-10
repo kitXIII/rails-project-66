@@ -7,9 +7,15 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
   end
 
   def create
-    @check = resource_repository.build
+    @check = resource_repository.checks.build
     authorize @check
 
-    redirect_to repository_path(resource_repository), t('.success')
+    if @check.save
+      RepositoryCheckRunJob.perform_later(@check.id)
+
+      redirect_to repository_path(resource_repository), notice: t('.success')
+    else
+      redirect_to repository_path(resource_repository), notice: t('.failure')
+    end
   end
 end
