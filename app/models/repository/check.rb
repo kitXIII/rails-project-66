@@ -7,25 +7,17 @@ class Repository::Check < ApplicationRecord
 
   aasm column: :state do
     state :init, initial: true
-    state :fetching, :fetched, :checking, :checked, :failed
+    state :in_progress, :on_error, :finished, :failed
 
-    event :fetch do
-      transitions from: %i[init failed], to: :fetching
+    event :start do
+      transitions from: :init, to: :in_progress
     end
 
-    event :mark_as_fetched do
-      transitions from: :fetching, to: :fetched
+    event :finish do
+      transitions from: :in_progress, to: :finished
     end
 
-    event :check do
-      transitions from: :fetched, to: :checking
-    end
-
-    event :mark_as_checked do
-      transitions from: :checking, to: :checked
-    end
-
-    event :mark_as_failed do
+    event :fail do
       transitions to: :failed
     end
   end
