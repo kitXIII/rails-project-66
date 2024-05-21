@@ -19,9 +19,9 @@ class RepositoryCheckRunJob < ApplicationJob
     repository_check.commit_id = result
     repository_check.save
 
-    command = "rubocop -f json -c #{Rails.root.join('lib/linter_configs/rubocop.yml')}"
+    # command = "rubocop -f json -c #{Rails.root.join('lib/linter_configs/rubocop.yml')}"
 
-    result = RepositoryCheckHelper.run_check(command, work_dir_path)
+    # result = RepositoryCheckHelper.run_check(command, work_dir_path)
 
     # result.files[i].path - проверить, если что отчистить путь
     # result.files[i].offenses[j].message - сообщение

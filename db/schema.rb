@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_151241) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_21_183701) do
   create_table "repositories", force: :cascade do |t|
     t.string "name"
     t.integer "github_id", null: false
@@ -23,6 +23,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_151241) do
     t.datetime "updated_at", null: false
     t.index ["github_id"], name: "index_repositories_on_github_id", unique: true
     t.index ["user_id"], name: "index_repositories_on_user_id"
+  end
+
+  create_table "repository_check_file_problems", force: :cascade do |t|
+    t.string "rule"
+    t.text "description"
+    t.string "location"
+    t.integer "file_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["file_id"], name: "index_repository_check_file_problems_on_file_id"
+  end
+
+  create_table "repository_check_files", force: :cascade do |t|
+    t.string "path"
+    t.integer "check_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["check_id"], name: "index_repository_check_files_on_check_id"
   end
 
   create_table "repository_checks", force: :cascade do |t|
@@ -45,5 +63,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_151241) do
   end
 
   add_foreign_key "repositories", "users"
+  add_foreign_key "repository_check_file_problems", "repository_check_files", column: "file_id"
+  add_foreign_key "repository_check_files", "repository_checks", column: "check_id"
   add_foreign_key "repository_checks", "repositories"
 end
