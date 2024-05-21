@@ -2,12 +2,12 @@
 
 one:
   rule: MyString
-  description: MyText
+  message: MyText
   location: MyString
   file: one
 
 two:
   rule: MyString
-  description: MyText
+  message: MyText
   location: MyString
   file: two

@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_21_183701) do
 
   create_table "repository_check_file_problems", force: :cascade do |t|
     t.string "rule"
-    t.text "description"
+    t.text "message"
     t.string "location"
     t.integer "file_id", null: false
     t.datetime "created_at", null: false
