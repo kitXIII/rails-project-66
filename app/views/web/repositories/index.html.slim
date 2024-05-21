@@ -1,15 +1,18 @@
 = link_to t('.new'), new_repository_path, class: 'btn btn-primary'
 
-.overflow-x-scroll.pt-2
-  table.table.table-striped.table-hover
-    thead
-      tr
-        th{ scope = 'col' } = Repository.human_attribute_name(:name)
-        th{ scope = 'col' } = Repository.human_attribute_name(:language)
-        th{ scope = 'col' } = t('.last_check_state')
-    tbody
-      - @repositories.each do |repository|
+- if @repositories.empty?
+  p.pt-4.fs-5 = t('.empty')
+- else
+  .overflow-x-scroll.pt-2
+    table.table.table-striped.table-hover
+      thead
         tr
-          td = repository.name ? link_to(repository.name, repository_path(repository)) : '-'
-          td = repository.language || '-'
-          td = '-'
+          th{ scope = 'col' } = Repository.human_attribute_name(:name)
+          th{ scope = 'col' } = Repository.human_attribute_name(:language)
+          th{ scope = 'col' } = t('.last_check_state')
+      tbody
+        - @repositories.each do |repository|
+          tr
+            td = repository.name ? link_to(repository.name, repository_path(repository)) : '-'
+            td = repository.language || '-'
+            td = '-'
