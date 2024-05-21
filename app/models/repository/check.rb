@@ -7,7 +7,7 @@ class Repository::Check < ApplicationRecord
 
   aasm column: :state do
     state :init, initial: true
-    state :in_progress, :on_error, :finished, :failed
+    state :in_progress, :finished, :failed
 
     event :start do
       transitions from: :init, to: :in_progress
