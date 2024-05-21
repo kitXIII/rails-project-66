@@ -17,3 +17,22 @@ p
 p
   strong.me-2 = Repository::Check.human_attribute_name(:commit_id)
   = @check.commit_id || '-'
+
+- unless @check.files.empty?
+  .overflow-x-scroll.pt-2
+    table.table.table-hover
+      thead
+        tr
+          th{ scope = 'col' } = Repository::Check::File::Problem.human_attribute_name(:message)
+          th{ scope = 'col' } = Repository::Check::File::Problem.human_attribute_name(:rule)
+          th{ scope = 'col' } = Repository::Check::File::Problem.human_attribute_name(:location)
+      tbody
+        - @check.files.each do |file|
+          tr
+            td{ colspan = 3 } = file.path
+
+          - file.problems.each do |problem|
+            tr
+              td = problem.message
+              td = problem.rule
+              td = problem.location

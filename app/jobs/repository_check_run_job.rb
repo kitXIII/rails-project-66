@@ -14,20 +14,30 @@ class RepositoryCheckRunJob < ApplicationJob
 
     RepositoryCheckHelper.prepare_work_dir(work_dir_path)
 
-    result = RepositoryCheckHelper.clone_repo(repository_check.repository.clone_url, work_dir_path)
+    commit_id = RepositoryCheckHelper.clone_repo(repository_check.repository.clone_url, work_dir_path)
 
-    repository_check.commit_id = result
+    command = "rubocop -f json -c #{Rails.root.join('lib/linter_configs/rubocop.yml')}"
+
+    result = RepositoryCheckHelper.run_check(command, work_dir_path)
+
+    result['files'].each do |f|
+      next if f['offenses'].empty?
+
+      check_file = Repository::Check::File.create(path: f['path'], check: repository_check)
+
+      f['offenses'].each do |o|
+        Repository::Check::File::Problem.create(
+          rule: o['cop_name'],
+          message: o['message'],
+          location: "#{o['location']['line']}:#{o['location']['column']}",
+          file: check_file
+        )
+      end
+    end
+
+    repository_check.commit_id = commit_id
+    repository_check.result = result['summary']['offense_count'].zero?
     repository_check.save
-
-    # command = "rubocop -f json -c #{Rails.root.join('lib/linter_configs/rubocop.yml')}"
-
-    # result = RepositoryCheckHelper.run_check(command, work_dir_path)
-
-    # result.files[i].path - проверить, если что отчистить путь
-    # result.files[i].offenses[j].message - сообщение
-    # result.files[i].offenses[j].cop_name - правило
-    # result.files[i].offenses[j].location.line - часть для составления line:column
-    # result.files[i].offenses[j].location.column - часть для составления line:column
 
     RepositoryCheckHelper.clean_work_dir_if_exists(work_dir_path)
     repository_check.finish!

@@ -17,3 +17,7 @@ ru:
         state/in_progress: В процессе
         state/finished: Завершена
         state/failed: Сбой
+      repository/check/file/problem:
+        message: Сообщение
+        rule: Правило
+        location: Строка и символ
