@@ -12,7 +12,7 @@ p
 
 p
   strong.me-2 = Repository::Check.human_attribute_name(:result)
-  = @check.result
+  = @check.result_success?
 
 p
   strong.me-2 = Repository::Check.human_attribute_name(:commit_id)
@@ -23,16 +23,16 @@ p
     table.table.table-hover
       thead
         tr
-          th{ scope = 'col' } = Repository::Check::File::Problem.human_attribute_name(:message)
-          th{ scope = 'col' } = Repository::Check::File::Problem.human_attribute_name(:rule)
-          th{ scope = 'col' } = Repository::Check::File::Problem.human_attribute_name(:location)
+          th{ scope = 'col' } = Repository::Check::Flaw.human_attribute_name(:message)
+          th{ scope = 'col' } = Repository::Check::Flaw.human_attribute_name(:rule)
+          th{ scope = 'col' } = Repository::Check::Flaw.human_attribute_name(:location)
       tbody
         - @check.files.each do |file|
           tr
             td{ colspan = 3 } = file.path
 
-          - file.problems.each do |problem|
+          - file.flaws.each do |flaw|
             tr
-              td = problem.message
-              td = problem.rule
-              td = problem.location
+              td = flaw.message
+              td = flaw.rule
+              td = flaw.location
