@@ -5,6 +5,7 @@ class Repository::Check < ApplicationRecord
 
   belongs_to :repository
   has_many :files, dependent: :destroy
+  has_many :flaws, dependent: :destroy
 
   aasm column: :state do
     state :init, initial: true
@@ -21,5 +22,9 @@ class Repository::Check < ApplicationRecord
     event :fail do
       transitions to: :failed
     end
+  end
+
+  def result_success?
+    finished? && flaws.empty?
   end
 end

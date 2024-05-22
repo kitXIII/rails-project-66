@@ -2,5 +2,5 @@
 
 class Repository::Check::File < ApplicationRecord
   belongs_to :check
-  has_many :problems, dependent: :destroy
+  has_many :flaws # rubocop:disable Rails/HasManyOrHasOneDependent
 end

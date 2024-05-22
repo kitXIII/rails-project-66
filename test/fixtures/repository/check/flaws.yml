@@ -4,10 +4,12 @@ one:
   rule: MyString
   message: MyText
   location: MyString
+  check: one
   file: one
 
 two:
   rule: MyString
   message: MyText
   location: MyString
+  check: two
   file: two
