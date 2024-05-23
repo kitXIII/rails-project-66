@@ -4,10 +4,10 @@ one:
   commit_id: MyString
   repository: one
   state: :init
-  result: false
+  flaws_count: 1
 
 two:
   commit_id: MyString
   repository: two
   state: :init
-  result: false
+  flaws_count: 1
