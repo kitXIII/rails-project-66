@@ -30,10 +30,10 @@ p
           th{ scope = 'col' } = Repository::Check.human_attribute_name(:result)
           th{ scope = 'col' } = Repository::Check.human_attribute_name(:created_at)
       tbody
-        - @repository.checks.each do |check|
+        - @repository.checks.ordered_by_created_at.each do |check|
           tr
             td = link_to check.id, repository_check_path(@repository, check)
             td = check.aasm.human_state
-            td = check.commit_id || '-'
-            td = check.result_success?
+            td = link_to_commit(check)
+            td = t(check.result_success?)
             td = l(check.created_at, format: :long)

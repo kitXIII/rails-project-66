@@ -9,4 +9,8 @@ class Repository < ApplicationRecord
   validates :github_id, presence: true, uniqueness: true
 
   enumerize :language, in: %i[ruby]
+
+  def url
+    clone_url.gsub(/\.git$/, '')
+  end
 end

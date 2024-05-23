@@ -12,11 +12,11 @@ p
 
 p
   strong.me-2 = Repository::Check.human_attribute_name(:result)
-  = @check.result_success?
+  = t(@check.result_success?)
 
 p
   strong.me-2 = Repository::Check.human_attribute_name(:commit_id)
-  = @check.commit_id || '-'
+  = link_to_commit(@check)
 
 - unless @check.files.empty?
   .overflow-x-scroll.pt-2
@@ -29,7 +29,7 @@ p
       tbody
         - @check.files.each do |file|
           tr
-            td{ colspan = 3 } = file.path
+            td{ colspan = 3 } = link_to_file(file)
 
           - file.flaws.each do |flaw|
             tr

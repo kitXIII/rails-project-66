@@ -7,6 +7,8 @@ class Repository::Check < ApplicationRecord
   has_many :files, dependent: :destroy
   has_many :flaws, dependent: :destroy
 
+  scope :ordered_by_created_at, -> { order(created_at: :desc) }
+
   aasm column: :state do
     state :init, initial: true
     state :in_progress, :finished, :failed
@@ -26,5 +28,9 @@ class Repository::Check < ApplicationRecord
 
   def result_success?
     finished? && flaws.empty?
+  end
+
+  def commit_url
+    repository && commit_id ? [repository.url, 'commit', commit_id].join('/') : ''
   end
 end

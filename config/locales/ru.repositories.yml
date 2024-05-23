@@ -3,8 +3,10 @@ ru:
     repositories:
       index:
         empty: У вас пока нет ни одного репозитория
+        failure: Провалена
         last_check_state: Статус последней проверки
         new: Добавить репозиторий
+        success: Пройдена
       new:
         title: Добавление репозитория
       create:
