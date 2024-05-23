@@ -15,4 +15,8 @@
           tr
             td = repository.name ? link_to(repository.name, repository_path(repository)) : '-'
             td = repository.language || '-'
-            td = repository.checks.last&.result_success? ? t('.success') : t('.failure')
+            td
+              - if repository.checks.last.nil?
+                = t('.no_any_check')
+              - else
+                = repository.checks.last.result_success? ? t('.success') : t('.failure')

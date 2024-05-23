@@ -27,7 +27,7 @@ class Repository::Check < ApplicationRecord
   end
 
   def result_success?
-    finished? && flaws.empty?
+    finished? && flaws_count.zero?
   end
 
   def commit_url

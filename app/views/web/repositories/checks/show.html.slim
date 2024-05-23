@@ -14,6 +14,11 @@ p
   strong.me-2 = Repository::Check.human_attribute_name(:result)
   = t(@check.result_success?)
 
+- unless @check.result_success?
+  p
+    strong.me-2 = Repository::Check.human_attribute_name(:flaws_count)
+    = @check.flaws_count
+
 p
   strong.me-2 = Repository::Check.human_attribute_name(:commit_id)
   = link_to_commit(@check)

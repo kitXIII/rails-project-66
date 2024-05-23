@@ -11,13 +11,14 @@ ru:
       repository/check:
         commit_id: ID коммита
         created_at: Дата создания
+        flaws_count: Количество замечаний
         result: Пройдена
         state: Статус
         state/init: Начата
         state/in_progress: В процессе
         state/finished: Завершена
         state/failed: Сбой
-      repository/check/file/problem:
+      repository/check/flaw:
         message: Сообщение
         rule: Правило
         location: Строка и символ
