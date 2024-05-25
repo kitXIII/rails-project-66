@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
-class RepositoryCheckJob < ApplicationJob
-  queue_as :default
+class RepositoryChecker
+  include Import['repository_check_helper']
 
-  def perform(repository_check_id)
-    repository_check_helper = ApplicationContainer['repository_check_helper']
+  def run(repository_check)
+    return unless repository_check.may_start?
 
-    repository_check = Repository::Check.find repository_check_id
-
-    return unless repository_check&.may_start?
+    work_dir_path = Rails.root.join('tmp/repos', repository_check.id.to_s)
 
     repository_check.start!
-
-    work_dir_path = Rails.root.join('tmp/repos', repository_check_id.to_s)
 
     repository_check_helper.prepare_work_dir(work_dir_path)
 

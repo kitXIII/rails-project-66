@@ -3,7 +3,7 @@
 module GithubHelper
   class << self
     def client(user)
-      ApplicationContainer[:octokit_client].new access_token: user.token, auto_paginate: true
+      ApplicationContainer['octokit_client'].new access_token: user.token, auto_paginate: true
     end
 
     def fetch_available_user_repos(user)

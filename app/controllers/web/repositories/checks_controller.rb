@@ -11,7 +11,7 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
     authorize @check
 
     if @check.save
-      RepositoryCheckJob.perform_later(@check.id)
+      RepositoryCheckerJob.perform_later(@check.id)
 
       redirect_to repository_path(resource_repository), notice: t('.success')
     else
