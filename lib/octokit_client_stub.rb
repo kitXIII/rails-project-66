@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Repo = Struct.new(:id, :name, :full_name, :language, :ssh_url, :clone_url)
+Repo = Struct.new(:id, :name, :full_name, :language, :html_url, :clone_url)
 
 class OctokitClientStub
   REPOS = [

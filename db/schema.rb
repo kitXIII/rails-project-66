@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_23_193534) do
     t.string "full_name"
     t.string "language"
     t.string "clone_url"
-    t.string "ssh_url"
+    t.string "html_url"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -31,6 +31,6 @@ class Repository::Check < ApplicationRecord
   end
 
   def commit_url
-    repository && commit_id ? [repository.url, 'commit', commit_id].join('/') : ''
+    repository && commit_id ? [repository.html_url, 'commit', commit_id].join('/') : ''
   end
 end

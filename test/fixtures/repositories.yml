@@ -6,7 +6,7 @@ one:
   full_name: MyString1
   language: ruby
   clone_url: MyString
-  ssh_url: MyString
+  html_url: MyString
   user: one
 
 two:
@@ -15,5 +15,5 @@ two:
   full_name: MyString
   language: ruby
   clone_url: MyString
-  ssh_url: MyString
+  html_url: MyString
   user: two

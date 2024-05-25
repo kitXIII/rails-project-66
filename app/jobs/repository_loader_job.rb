@@ -15,7 +15,7 @@ class RepositoryLoaderJob < ApplicationJob
       full_name: github_data[:full_name],
       language: github_data[:language].downcase,
       clone_url: github_data[:clone_url],
-      ssh_url: github_data[:ssh_url]
+      html_url: github_data[:html_url]
     }
 
     repository.update!(params)
