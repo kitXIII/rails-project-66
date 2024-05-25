@@ -4,6 +4,8 @@ class RepositoryCheckRunJob < ApplicationJob
   queue_as :default
 
   def perform(repository_check_id)
+    repository_check_helper = ApplicationContainer['repository_check_helper']
+
     repository_check = Repository::Check.find repository_check_id
 
     return unless repository_check&.may_start?
@@ -12,11 +14,11 @@ class RepositoryCheckRunJob < ApplicationJob
 
     work_dir_path = Rails.root.join('tmp/repos', repository_check_id.to_s)
 
-    RepositoryCheckHelper.prepare_work_dir(work_dir_path)
+    repository_check_helper.prepare_work_dir(work_dir_path)
 
-    commit_id = RepositoryCheckHelper.clone_repo(repository_check.repository.clone_url, work_dir_path)
+    commit_id = repository_check_helper.clone_repo(repository_check.repository.clone_url, work_dir_path)
 
-    result = RepositoryCheckHelper.run_check(Linter::Ruby.command, work_dir_path)
+    result = repository_check_helper.run_check(Linter::Ruby.command, work_dir_path)
 
     files = Linter::Ruby.transform(result)
 
@@ -37,10 +39,10 @@ class RepositoryCheckRunJob < ApplicationJob
     repository_check.commit_id = commit_id
     repository_check.save
 
-    RepositoryCheckHelper.clean_work_dir_if_exists(work_dir_path)
+    repository_check_helper.clean_work_dir_if_exists(work_dir_path)
     repository_check.finish!
   rescue StandardError
-    RepositoryCheckHelper.clean_work_dir_if_exists(work_dir_path)
+    repository_check_helper.clean_work_dir_if_exists(work_dir_path)
     repository_check.fail!
   end
 end
