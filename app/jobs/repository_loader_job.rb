@@ -19,5 +19,8 @@ class RepositoryLoaderJob < ApplicationJob
     }
 
     repository.update!(params)
+
+    check = repository.checks.create
+    RepositoryCheckRunJob.perform_later(check.id)
   end
 end
