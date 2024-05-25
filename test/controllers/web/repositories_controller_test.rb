@@ -62,6 +62,14 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to repositories_url
   end
 
+  test 'should create check when repository is created' do
+    sign_in(@user)
+
+    assert_difference 'Repository::Check.count', 1 do
+      post repositories_url, params: { repository: @attrs }
+    end
+  end
+
   test 'should create and refresh data when repository exists' do
     sign_in(@user)
     post repositories_url, params: { repository: @repository_exists.slice(:github_id) }
@@ -80,6 +88,26 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     repository = Repository.find_by @repository_belongs_to_another_user.slice(:github_id)
 
     assert { repository.clone_url == @repository_belongs_to_another_user.clone_url }
+
+    assert_redirected_to root_url
+  end
+
+  test 'should get show when user is author' do
+    sign_in(@user)
+    get repository_url @repository_exists
+
+    assert_response :success
+  end
+
+  test 'should not get show when user is not author' do
+    sign_in(@user)
+    get repository_url @repository_belongs_to_another_user
+
+    assert_response :missing
+  end
+
+  test 'should not get show when user is not logged in' do
+    get repository_url @repository_exists
 
     assert_redirected_to root_url
   end
