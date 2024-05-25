@@ -23,7 +23,7 @@ class Web::RepositoriesController < Web::ApplicationController
     authorize @repository
 
     if @repository.save
-      RepositoryLoaderJob.perform_later(@repository.id)
+      RepositoryLoadJob.perform_later(@repository.id)
 
       redirect_to repositories_path, notice: t('.success')
     else

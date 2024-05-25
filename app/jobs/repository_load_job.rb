@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RepositoryLoaderJob < ApplicationJob
+class RepositoryLoadJob < ApplicationJob
   queue_as :default
 
   def perform(repository_id)
@@ -21,6 +21,6 @@ class RepositoryLoaderJob < ApplicationJob
     repository.update!(params)
 
     check = repository.checks.create
-    RepositoryCheckRunJob.perform_later(check.id)
+    RepositoryCheckJob.perform_later(check.id)
   end
 end
