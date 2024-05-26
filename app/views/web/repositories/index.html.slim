@@ -18,5 +18,7 @@
             td
               - if repository.checks.last.nil?
                 = t('.no_any_check')
+              - elsif repository.checks.last.in_progress?
+                = t('.in_progress')
               - else
                 = repository.checks.last.result_success? ? t('.success') : t('.failure')
