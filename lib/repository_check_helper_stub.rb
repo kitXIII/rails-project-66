@@ -2,8 +2,6 @@
 
 module RepositoryCheckHelperStub
   class << self
-    def prepare_work_dir(*); end
-
     def clean_work_dir_if_exists(*); end
 
     def clone_repo(*)

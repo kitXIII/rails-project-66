@@ -10,8 +10,6 @@ class RepositoryChecker
 
     repository_check.start!
 
-    repository_check_helper.prepare_work_dir(work_dir_path)
-
     commit_id = repository_check_helper.clone_repo(repository_check.repository.clone_url, work_dir_path)
 
     result = repository_check_helper.run_check(Linter::Ruby.command, work_dir_path)
