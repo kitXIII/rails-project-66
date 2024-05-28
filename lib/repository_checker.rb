@@ -12,9 +12,11 @@ class RepositoryChecker
 
     commit_id = repository_check_helper.clone_repo(repository_check.repository.clone_url, work_dir_path)
 
-    result = repository_check_helper.run_check(Linter::Ruby.command, work_dir_path)
+    linter = "Linter::#{repository_check.repository.language.capitalize}".constantize
 
-    files = Linter::Ruby.transform(result)
+    result = repository_check_helper.run_check(linter.command, work_dir_path)
+
+    files = linter.transform(result, work_dir_path)
 
     files.each do |file|
       check_file = Repository::Check::File.create(path: file.path, check: repository_check)

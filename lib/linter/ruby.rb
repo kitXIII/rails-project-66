@@ -6,7 +6,7 @@ module Linter
       "rubocop -f json -c #{Rails.root.join('lib/linter/configs/rubocop.yml')}"
     end
 
-    def self.transform(result)
+    def self.transform(result, _work_dir_path)
       result['files']
         .reject { |file| file['offenses'].empty? }
         .map do |file|
