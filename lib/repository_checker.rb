@@ -12,7 +12,7 @@ class RepositoryChecker
 
     commit_id = repository_check_helper.clone_repo(repository_check.repository.clone_url, work_dir_path)
 
-    linter = "Linter::#{repository_check.repository.language.capitalize}".constantize
+    linter = "Linter::#{repository_check.repository.language.capitalize}Linter".constantize.new
 
     result = repository_check_helper.run_check(linter.command, work_dir_path)
 
@@ -37,7 +37,9 @@ class RepositoryChecker
 
     repository_check_helper.clean_work_dir_if_exists(work_dir_path)
     repository_check.finish!
-  rescue StandardError
+  rescue StandardError => e
+    Rails.logger.error e
+
     repository_check_helper.clean_work_dir_if_exists(work_dir_path)
     repository_check.fail!
   end
