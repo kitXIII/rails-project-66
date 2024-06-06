@@ -20,7 +20,6 @@ class RepositoryLoaderJob < ApplicationJob
 
     repository.update!(params)
 
-    check = repository.checks.create
-    RepositoryCheckerJob.perform_later(check.id)
+    GithubHelper.add_repo_check_hook(repository)
   end
 end

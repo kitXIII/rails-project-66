@@ -4,7 +4,7 @@ module Linter
   class JavascriptLinter < BaseLinter
     def command
       "node --no-warnings \
-         #{Rails.root.join('node_modules/.bin/eslint')} . \
+        #{Rails.root.join('node_modules/.bin/eslint')} . \
         -c #{Rails.root.join('lib/linter/configs/eslint.config.js')} \
         -f json"
     end

@@ -62,14 +62,6 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to repositories_url
   end
 
-  test 'should create check when repository is created' do
-    sign_in(@user)
-
-    assert_difference 'Repository::Check.count', 1 do
-      post repositories_url, params: { repository: @attrs }
-    end
-  end
-
   test 'should create and refresh data when repository exists' do
     sign_in(@user)
     post repositories_url, params: { repository: @repository_exists.slice(:github_id) }

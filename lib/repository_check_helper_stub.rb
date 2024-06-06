@@ -10,34 +10,14 @@ module RepositoryCheckHelperStub
 
     def run_check(*)
       {
-        files: [
+        'files' => [
           {
-            path: 'Gemfile',
-            offenses: [
-              {
-                message: "Prefer single-quoted strings when you don't need string interpolation or special symbols.",
-                cop_name: 'Style/StringLiterals',
-                location:
-                  {
-                    line: 8,
-                    column: 5
-                  }
-              }
-            ]
+            'path' => 'Gemfile',
+            'offenses' => []
           },
           {
-            path: 'abc.gemspec',
-            offenses: [
-              {
-                message: "`metadata['rubygems_mfa_required']` must be set to `'true'`.",
-                cop_name: 'Gemspec/RequireMFA',
-                location:
-                  {
-                    line: 1,
-                    column: 15
-                  }
-              }
-            ]
+            'path' => 'abc.gemspec',
+            'offenses' => []
           }
         ]
       }
