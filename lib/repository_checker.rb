@@ -16,7 +16,7 @@ class RepositoryChecker
 
     result = repository_check_helper.run_check(linter.command, work_dir_path)
 
-    files = linter.transform(result, work_dir_path)
+    files = linter.build_files_with_flaws(result, work_dir_path)
 
     files.each do |file|
       check_file = Repository::Check::File.create(path: file.path, check: repository_check)

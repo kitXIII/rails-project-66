@@ -9,7 +9,7 @@ module Linter
         -f json"
     end
 
-    def transform(result, work_dir_path)
+    def build_files_with_flaws(result, work_dir_path)
       result
         .reject { |file| file['errorCount'].zero? }
         .map do |file|

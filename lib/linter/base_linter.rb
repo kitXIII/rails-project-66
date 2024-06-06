@@ -17,7 +17,7 @@ module Linter
       raise NotImplementedError
     end
 
-    def transform
+    def build_files_with_flaws
       raise NotImplementedError
     end
   end
