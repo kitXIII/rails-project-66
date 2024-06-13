@@ -84,10 +84,9 @@ Rails.application.configure do
     user_name: ENV.fetch('MAILER_USERNAME', nil),
     password: ENV.fetch('MAILER_PASSWORD', nil),
     address: ENV.fetch('MAILER_ADDRESS', nil),
-    host: ENV.fetch('MAILER_HOST', nil),
     port: ENV.fetch('MAILER_PORT', nil),
-    authentication: :login,
-    enable_starttls_auto: true
+    authentication: :plain,
+    enable_starttls: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

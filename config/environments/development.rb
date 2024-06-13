@@ -39,7 +39,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -48,9 +48,9 @@ Rails.application.configure do
     user_name: ENV.fetch('MAILER_USERNAME', nil),
     password: ENV.fetch('MAILER_PASSWORD', nil),
     address: ENV.fetch('MAILER_ADDRESS', nil),
-    host: ENV.fetch('MAILER_HOST', nil),
     port: ENV.fetch('MAILER_PORT', nil),
-    authentication: :login
+    authentication: :plain,
+    enable_starttls: true
   }
 
   # Print deprecation notices to the Rails logger.
