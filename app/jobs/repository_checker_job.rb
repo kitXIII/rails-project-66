@@ -6,6 +6,14 @@ class RepositoryCheckerJob < ApplicationJob
   def perform(repository_check_id)
     repository_check = Repository::Check.find repository_check_id
 
-    RepositoryChecker.new.run(repository_check) if repository_check
+    return unless repository_check
+
+    RepositoryChecker.new.run(repository_check)
+
+    RepositoryCheckMailer.check_failed_email(repository_check.id).deliver_later if repository_check.failed?
+
+    return if repository_check.result_success?
+
+    RepositoryCheckMailer.check_found_flaws_email(repository_check.id).deliver_later
   end
 end

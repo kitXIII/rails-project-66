@@ -9,6 +9,8 @@ OmniAuth.config.test_mode = true
 
 module ActiveSupport
   class TestCase
+    include ActionMailer::TestHelper
+
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 

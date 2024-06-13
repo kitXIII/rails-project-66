@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'noreply@kitxiii-github-quality.onrender.com'
   layout 'mailer'
+
+  helper Web::Repositories::ChecksHelper
 end

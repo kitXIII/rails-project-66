@@ -9,3 +9,5 @@ ru:
           repositories: Репозитории
           logout: Выйти
           sign_in: Войти с помощью Github
+    mailer:
+      title: Анализатор качества репозиториев

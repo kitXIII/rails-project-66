@@ -1,0 +1,10 @@
+ru:
+  repository_check_mailer:
+    check_failed: При проверке репозитория %{repo_name} возникли проблемы
+    check_failed_email:
+      title: При проверке репозитория %{repo_name} возникли проблемы
+      description: Попробуйте перезапустить проверку позже
+    check_found_flaws: В ходе проверки репозитория %{repo_name} найдены замечания
+    check_found_flaws_email:
+      title:  В ходе проверки репозитория %{repo_name} найдены замечания
+      count_of_flaws:  'Количество замечаний: %{count}'
