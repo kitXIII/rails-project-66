@@ -9,7 +9,7 @@ class Repository::Check < ApplicationRecord
 
   scope :ordered_by_created_at, -> { order(created_at: :desc) }
 
-  aasm column: :state do
+  aasm do
     state :init, initial: true
     state :in_progress, :finished, :failed
 
@@ -24,10 +24,6 @@ class Repository::Check < ApplicationRecord
     event :fail do
       transitions to: :failed
     end
-  end
-
-  def result_success?
-    finished? && flaws_count.zero?
   end
 
   def commit_url

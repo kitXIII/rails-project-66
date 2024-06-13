@@ -35,5 +35,5 @@ p
             td = link_to check.id, repository_check_path(@repository, check)
             td = check.aasm.human_state
             td = link_to_commit(check)
-            td = t(check.result_success?)
+            td = t(check.passed)
             td = l(check.created_at, format: :long)

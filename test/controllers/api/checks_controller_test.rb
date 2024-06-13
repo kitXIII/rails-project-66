@@ -14,7 +14,7 @@ class Api::ChecksControllerTest < ActionDispatch::IntegrationTest
 
     check = @repository.checks.last
 
-    assert { check.result_success? }
+    assert { check.passed }
     assert_response :success
   end
 

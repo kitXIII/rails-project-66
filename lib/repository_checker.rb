@@ -35,6 +35,8 @@ class RepositoryChecker
     repository_check.commit_id = commit_id
     repository_check.save
 
+    repository_check.passed = repository_check.flaws_count.zero?
+
     repository_check_helper.clean_work_dir_if_exists(work_dir_path)
     repository_check.finish!
   rescue StandardError => e

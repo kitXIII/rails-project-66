@@ -12,9 +12,9 @@ p
 
 p
   strong.me-2 = Repository::Check.human_attribute_name(:result)
-  = t(@check.result_success?)
+  = t(@check.passed)
 
-- unless @check.result_success?
+- unless @check.passed
   p
     strong.me-2 = Repository::Check.human_attribute_name(:flaws_count)
     = @check.flaws_count

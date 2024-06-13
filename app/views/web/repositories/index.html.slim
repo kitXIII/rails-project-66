@@ -21,4 +21,4 @@
               - elsif repository.checks.last.in_progress?
                 = t('.in_progress')
               - else
-                = repository.checks.last.result_success? ? t('.success') : t('.failure')
+                = repository.checks.last.passed ? t('.success') : t('.failure')
