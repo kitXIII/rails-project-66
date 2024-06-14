@@ -12,12 +12,12 @@ ru:
         commit_id: ID коммита
         created_at: Дата создания
         flaws_count: Количество замечаний
-        result: Пройдена
+        passed: Пройдена
         state: Статус
-        state/init: Начата
-        state/in_progress: В процессе
-        state/finished: Завершена
-        state/failed: Сбой
+        aasm_state/init: Начата
+        aasm_state/in_progress: В процессе
+        aasm_state/finished: Завершена
+        aasm_state/failed: Сбой
       repository/check/flaw:
         message: Сообщение
         rule: Правило

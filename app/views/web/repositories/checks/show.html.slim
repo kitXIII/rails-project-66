@@ -11,7 +11,7 @@ p
   = @check.aasm.human_state
 
 p
-  strong.me-2 = Repository::Check.human_attribute_name(:result)
+  strong.me-2 = Repository::Check.human_attribute_name(:passed)
   = t(@check.passed)
 
 - unless @check.passed

@@ -27,7 +27,7 @@ p
           th{ scope = 'col' }
           th{ scope = 'col' } = Repository::Check.human_attribute_name(:state)
           th{ scope = 'col' } = Repository::Check.human_attribute_name(:commit_id)
-          th{ scope = 'col' } = Repository::Check.human_attribute_name(:result)
+          th{ scope = 'col' } = Repository::Check.human_attribute_name(:passed)
           th{ scope = 'col' } = Repository::Check.human_attribute_name(:created_at)
       tbody
         - @repository.checks.ordered_by_created_at.each do |check|
