@@ -9,6 +9,15 @@ It tracks code changes and runs built-in analyzers. Then it generates reports an
 
 The [demo](https://kitxiii-github-quality.onrender.com/) is published on [render](https://render.com/) service
 
+### Implementation Features
+
+* OAuth Github authentication
+* State management with [aasm](https://github.com/aasm/aasm)
+* Adaptive UI with [bootstrap](https://getbootstrap.com)
+* Asynchronous tasks of downloading and checking repositories using Active Job
+* Repositories with Ruby and Javascript languages ​​are available for checking
+* GitHub webhooks are used to track code changes
+
 ### Development
 
 
