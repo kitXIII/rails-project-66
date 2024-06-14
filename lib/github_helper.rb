@@ -8,7 +8,7 @@ module GithubHelper
 
     def fetch_available_user_repos(user)
       client(user).repos
-                  .select { |r| Repository.language.values.include? r.language.downcase }
+                  .select { |r| Repository.language.value? r.language.downcase }
     end
 
     def fetch_repo_data(repository)
