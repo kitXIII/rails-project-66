@@ -49,7 +49,7 @@ Rails.application.configure do
     password: ENV.fetch('MAILER_PASSWORD', nil),
     address: ENV.fetch('MAILER_ADDRESS', nil),
     port: ENV.fetch('MAILER_PORT', nil),
-    authentication: :plain,
+    authentication: :login,
     enable_starttls: true
   }
 

@@ -77,7 +77,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -85,7 +85,7 @@ Rails.application.configure do
     password: ENV.fetch('MAILER_PASSWORD', nil),
     address: ENV.fetch('MAILER_ADDRESS', nil),
     port: ENV.fetch('MAILER_PORT', nil),
-    authentication: :plain,
+    authentication: :login,
     enable_starttls: true
   }
 
