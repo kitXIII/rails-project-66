@@ -7,7 +7,7 @@ class Api::ChecksController < Api::ApplicationController
     check = repository.checks.create!
     RepositoryCheckerJob.perform_later(check.id)
 
-    head :no_content
+    head :ok
   end
 
   def check_params
