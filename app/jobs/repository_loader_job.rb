@@ -4,7 +4,7 @@ class RepositoryLoaderJob < ApplicationJob
   queue_as :default
 
   def perform(repository_id)
-    repository = Repository.find repository_id
+    repository = Repository.find(repository_id)
 
     return unless repository
 
@@ -19,7 +19,6 @@ class RepositoryLoaderJob < ApplicationJob
     }
 
     repository.update!(params)
-
     GithubHelper.add_repo_check_hook(repository)
   end
 end

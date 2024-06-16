@@ -9,7 +9,7 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def show
-    @repository = current_user.repositories.find params[:id]
+    @repository = current_user.repositories.find(params[:id])
   end
 
   def new

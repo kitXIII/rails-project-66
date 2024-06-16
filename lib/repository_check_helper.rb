@@ -13,7 +13,6 @@ module RepositoryCheckHelper
 
     def clone_repo(repo_clone_url, work_dir_path)
       prepare_work_dir(work_dir_path)
-
       _, _, status = Open3.capture3("git clone #{repo_clone_url} .", chdir: work_dir_path)
       raise 'Git clone failed' unless status.success?
 
