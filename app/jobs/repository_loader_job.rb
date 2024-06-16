@@ -8,7 +8,7 @@ class RepositoryLoaderJob < ApplicationJob
 
     return unless repository
 
-    github_data = GithubHelper.fetch_repo_data(repository)
+    github_data = GithubClient.fetch_repo_data(repository)
 
     params = {
       name: github_data[:name],
@@ -19,6 +19,6 @@ class RepositoryLoaderJob < ApplicationJob
     }
 
     repository.update!(params)
-    GithubHelper.add_repo_check_hook(repository)
+    GithubClient.add_repo_check_hook(repository)
   end
 end

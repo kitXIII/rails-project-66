@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RepositoryCheckHelperStub
+module RepositoryCheckClientStub
   class << self
     def clean_work_dir_if_exists(*); end
 

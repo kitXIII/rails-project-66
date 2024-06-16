@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module GithubHelper
+module GithubClient
   class << self
     def client(user)
       ApplicationContainer['octokit_client'].new access_token: user.token, auto_paginate: true

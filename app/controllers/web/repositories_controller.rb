@@ -40,7 +40,7 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def set_github_repos
     @github_repos = Rails.cache.fetch([current_user.id, session[:login_ts], :repos], expires_in: 10.minutes) do
-      GithubHelper.fetch_available_user_repos(current_user)
+      GithubClient.fetch_available_user_repos(current_user)
     end
   end
 end

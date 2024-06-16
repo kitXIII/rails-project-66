@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module RepositoryCheckHelper
+module RepositoryCheckClient
   class << self
     def prepare_work_dir(work_dir_path)
       clean_work_dir_if_exists(work_dir_path)
