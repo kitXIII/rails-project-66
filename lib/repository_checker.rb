@@ -32,9 +32,11 @@ class RepositoryChecker
     repository_check.passed = repository_check.flaws_count.zero?
     repository_check_helper.clean_work_dir_if_exists(work_dir_path)
     repository_check.finish!
+    RepositoryCheckMailer.check_found_flaws_email(repository_check.id).deliver_later unless repository_check.passed
   rescue StandardError => e
     Rails.logger.error e
     repository_check_helper.clean_work_dir_if_exists(work_dir_path)
     repository_check.fail!
+    RepositoryCheckMailer.check_failed_email(repository_check.id).deliver_later
   end
 end
