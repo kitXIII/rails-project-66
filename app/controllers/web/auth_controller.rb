@@ -3,7 +3,8 @@
 class Web::AuthController < Web::ApplicationController
   def callback
     auth = request.env['omniauth.auth']
-    user = find_or_initialize_user(auth)
+    provider = params[:provider]
+    user = find_or_initialize_user(auth, provider)
 
     if user.save
       sign_in(user)
@@ -20,12 +21,14 @@ class Web::AuthController < Web::ApplicationController
 
   private
 
-  def find_or_initialize_user(auth)
+  def find_or_initialize_user(auth, provider)
     user = User.find_or_initialize_by(email: auth[:info][:email].downcase)
     user.token = auth[:credentials][:token]
 
     return user if user.persisted?
 
+    user.provider = provider
+    user.uid = auth[:uid]
     user.nickname = auth[:info][:nickname]
     user.email = auth[:info][:email]
 
