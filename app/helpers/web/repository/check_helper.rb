@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Web::Repositories::ChecksHelper
+module Web::Repository::CheckHelper
   def link_to_commit(check)
     check.commit_id ? link_to(check.commit_id, check.commit_url, target: :blank) : ''
   end
