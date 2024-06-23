@@ -3,7 +3,7 @@
 module Linter
   class RubyLinter < BaseLinter
     def command
-      "rubocop -f json -c #{Rails.root.join('lib/linter/configs/rubocop.yml')}"
+      "bundle exec rubocop -f json -c #{Rails.root.join('lib/linter/configs/rubocop.yml')}"
     end
 
     def build_files_with_flaws(result, _work_dir_path)
